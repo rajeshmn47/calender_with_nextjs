@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.calendar {
+  width: 900px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-header {
+  width: 100%;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title h2 {
+  margin: auto;
+}
+
+.tools {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tools button {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: none;
+}
+
+.tools button span:hover {
+  color: #99cccc;
+}
+
+.calendar-body {
+  width: 100%;
+  flex-grow: 1;
+
+padding: 0;
+
+  box-shadow: 3px 3px 3px 3px rgb(216, 216, 216);
+  border-radius: 10px;
+}
+.table-content div{
+  border-left: none;
+}
+.table-header {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.weekday {
+  width: 100px;
+  text-align: center;
+}
+
+.table-content {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.calendar-day {
+  width: 125px;
+  height: 75px;
+  position: relative;
+  border: 1px solid #DDDDDD;
+}
+
+.calendar-day:hover {
+  background-color: rgba(0,0,0,.10);
+}
+
+.calendar-day p {
+  position: absolute;
+  right: 10px;
+  color: #a6a6a6;
+}
+
+.current p {
+  color: #000000;
+}
+
+.selected p {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.material-icons{
+  font-size: 12px;
+}
