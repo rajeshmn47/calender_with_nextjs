@@ -17,7 +17,7 @@ export default function Calendar(){
    
 
   const changeCurrentDay = (day) => {
-    console.log(day,'dynomodbb')
+    console.log(day.year,day.month,day.number,day,'dynomodbb')
     setCurrentDay(new Date(day.year, day.month, day.number));
   }
 
