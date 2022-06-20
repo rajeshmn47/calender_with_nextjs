@@ -37,7 +37,7 @@ function CalendarDays(props) {
   const handleChange = (newValue) => {
     console.log(newValue.getDate(),newValue.getDay(),'rajesh')
     setValue(newValue)
-    const day={year:newValue.getFullYear(),month:newValue.getMonth(),number:newValue.getDay()}
+    const day={year:newValue.getFullYear(),month:newValue.getMonth(),number:newValue.getDate()}
     props.changeCurrentDay(day)
   };
   return (
