@@ -1,4 +1,13 @@
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
+import {useState,useEffect} from 'react'
+
 function CalendarDays(props) {
+  const [value, setValue] =useState(props.day);
+
   const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
@@ -25,7 +34,12 @@ function CalendarDays(props) {
 
     currentDays.push(calendarDay);
   }
-
+  const handleChange = (newValue) => {
+    console.log(newValue.getDate(),newValue.getDay(),'rajesh')
+    setValue(newValue)
+    const day={year:newValue.getFullYear(),month:newValue.getMonth(),number:newValue.getDay()}
+    props.changeCurrentDay(day)
+  };
   return (
     <div className="table-content">
       {
@@ -38,6 +52,18 @@ function CalendarDays(props) {
           )
         })
       }
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Stack spacing={3}>
+        <DesktopDatePicker
+          label="Date desktop"
+          inputFormat="MM/dd/yyyy"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+              </Stack>
+    </LocalizationProvider>
+
     </div>
   )
 }
