@@ -14,7 +14,7 @@ export default function CalendarDays(props) {
 const time=new Array(24).fill(null)
   const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
-
+console.log(timings)
 useEffect(()=>{
   var currentDays = [];
   function bcg(){
