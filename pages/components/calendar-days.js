@@ -3,11 +3,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
-import {useState,useEffect} from 'react'
+import {useState,useEffect} from 'react';
 
-function CalendarDays(props) {
+export default function CalendarDays(props) {
   const [value, setValue] =useState(props.day);
-
+  const [calenderdays, setCalenderdays] =useState(props.day);
+  const [timings, setTimings] =useState(props.day);
+  const[task,setTask]=useState()
+const time=new Array(24).fill(null)
   const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
@@ -34,13 +37,26 @@ function CalendarDays(props) {
 
     currentDays.push(calendarDay);
   }
+  setCalenderdays(currentDays)
   const handleChange = (newValue) => {
     console.log(newValue.getDate(),newValue.getDay(),'rajesh')
     setValue(newValue)
     const day={year:newValue.getFullYear(),month:newValue.getMonth(),number:newValue.getDate()}
     props.changeCurrentDay(day)
   };
+  const  handlesubmit=(e)=>{
+e.preventDefault()
+console.log('raesh')
+var garuda=calenderdays
+garuda.forEach(element,index => {
+  if(element.date===props.day.getDate()&&element.month===props.day.getMonth()&&element.year===props.day.getFullYear()){
+    element.task=task
+    element.timings=timings
+  }
+});
+  }
   return (
+    <>
     <div className="table-content">
       {
         currentDays.map((day) => {
@@ -52,6 +68,8 @@ function CalendarDays(props) {
           )
         })
       }
+         </div>
+       <form onSubmit={handlesubmit}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Stack spacing={3}>
         <DesktopDatePicker
@@ -63,9 +81,19 @@ function CalendarDays(props) {
         />
               </Stack>
     </LocalizationProvider>
-
-    </div>
+ 
+   
+  {time.map((t,index)=>
+  <>
+  <input type="radio" id="html" name="fav_language" value="HTML"/>
+  <label for="html">{index<12?index<10?`0${index}:30-0${index+1}:30AM`:`${index}:30-${index+1}:30AM`:(index-12<10)?`0${index-12}:30-${index+1-12}:30PM`:`0${index-12}:30-${index+1-12}:30PM`}</label><br/>
+  </>
+  )}
+  <input placeholder='task name' value={task} onChange={(e)=>setTask(e.target.value)}/>
+  <input placeholder='task name' type='submit'/>
+</form>
+      </>
   )
 }
 
-export default CalendarDays;
+
