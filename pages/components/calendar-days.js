@@ -76,7 +76,7 @@ console.log(calenderdays)
             <div className={"calendar-day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")+(day.task?'task':'')}
                   onClick={() => props.changeCurrentDay(day)}>
               <p>{day.number}</p>
-              <p>{day.task&&day.task}</p>
+              <p>{day.task?day.task:null}</p>
               <p>{day.timings&&day.timings}</p>
             </div>
           )
