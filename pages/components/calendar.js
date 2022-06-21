@@ -5,7 +5,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
-
 export default function Calendar(){
 
     const[weekdays,setWeekdays] = useState(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
@@ -40,7 +39,7 @@ export default function Calendar(){
           <div className="tools">
             <button onClick={previousDay}>
               <span className="material-icons">
-              <ArrowBackIosIcon style={{fontSize:'12px'}}/>
+              <ArrowBackIosIcon style={{fontSize:'14px'}}/>
                 </span>
             </button>
             <p>{months[currentDay.getMonth()]?.substring(0, 3)} {currentDay.getDate()}</p>

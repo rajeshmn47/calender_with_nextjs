@@ -10,10 +10,13 @@ export default function CalendarDays(props) {
   const [calenderdays, setCalenderdays] =useState(props.day);
   const [timings, setTimings] =useState(props.day);
   const[task,setTask]=useState()
+
 const time=new Array(24).fill(null)
   const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
-  let currentDays = [];
+  var currentDays = [];
+function bcg(){
+ 
 
   for (let day = 0; day < 42; day++) {
     if (day === 0 && weekdayOfFirstDay === 0) {
@@ -37,13 +40,18 @@ const time=new Array(24).fill(null)
 
     currentDays.push(calendarDay);
   }
-  setCalenderdays(currentDays)
+}
+
   const handleChange = (newValue) => {
     console.log(newValue.getDate(),newValue.getDay(),'rajesh')
     setValue(newValue)
     const day={year:newValue.getFullYear(),month:newValue.getMonth(),number:newValue.getDate()}
     props.changeCurrentDay(day)
   };
+useEffect(()=>{
+  bcg()
+  setCalenderdays(currentDays)
+},[])
   const  handlesubmit=(e)=>{
 e.preventDefault()
 console.log('raesh')
