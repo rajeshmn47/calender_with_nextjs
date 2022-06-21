@@ -45,7 +45,7 @@ useEffect(()=>{
   }
   bcg()
   setCalenderdays(currentDays)
-},[])
+},[props.day])
   const handleChange = (newValue) => {
     console.log(newValue.getDate(),newValue.getDay(),'rajesh')
     setValue(newValue)
@@ -57,12 +57,15 @@ useEffect(()=>{
 e.preventDefault()
 console.log('raesh')
 var garuda=calenderdays
-garuda.forEach(element,index => {
-  if(element.date===props.day.getDate()&&element.month===props.day.getMonth()&&element.year===props.day.getFullYear()){
+garuda.forEach(element => {
+console.log(element.number===props.day.getDate(),'crea',element.month,props.day.getMonth(),element.year,props.day.getFullYear())
+  if(element.number===props.day.getDate()&&element.month===props.day.getMonth()&&element.year===props.day.getFullYear()){
     element.task=task
     element.timings=timings
   }
 });
+setCalenderdays(garuda)
+console.log(calenderdays)
   }
   return (
     <>
@@ -70,9 +73,11 @@ garuda.forEach(element,index => {
       {
         calenderdays?.map((day) => {
           return (
-            <div className={"calendar-day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")}
+            <div className={"calendar-day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")+(day.task?'task':'')}
                   onClick={() => props.changeCurrentDay(day)}>
               <p>{day.number}</p>
+              <p>{day.task&&day.task}</p>
+              <p>{day.timings&&day.timings}</p>
             </div>
           )
         })
@@ -94,7 +99,7 @@ garuda.forEach(element,index => {
    
   {time.map((t,index)=>
   <>
-  <input type="radio" id="html" name="fav_language" value="HTML"/>
+  <input type="radio" id="html" name="fav_language" value="HTML" onChange={(e)=>setTimings(e.target.value)}/>
   <label for="html">{index<12?index<10?`0${index}:30-0${index+1}:30AM`:`${index}:30-${index+1}:30AM`:(index-12<10)?`0${index-12}:30-${index+1-12}:30PM`:`0${index-12}:30-${index+1-12}:30PM`}</label><br/>
   </>
   )}
