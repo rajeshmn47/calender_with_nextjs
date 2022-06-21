@@ -36,8 +36,8 @@ useEffect(()=>{
         number: firstDayOfMonth.getDate(),
         selected: (firstDayOfMonth.toDateString() === props.day.toDateString()),
         year: firstDayOfMonth.getFullYear(),
-        task:null,
-        time:null
+        task:'null',
+        time:'dull'
       }
   
       currentDays.push(calendarDay);
