@@ -10,7 +10,7 @@ export default function CalendarDays(props) {
   const [calenderdays, setCalenderdays] =useState();
   const [timings, setTimings] =useState(props.day);
   const[task,setTask]=useState()
-
+const colors=['#D7D7F3','#FFD6C4','#C7EBDD','#D7D7F3','#FFD6C4','#C7EBDD','#FFFFFF','#FFFFFF','#ffffff','#D7D7F3','#FFD6C4','#C7EBDD']
 const time=new Array(24).fill(null)
   const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
   const weekdayOfFirstDay = firstDayOfMonth.getDay();
@@ -36,7 +36,7 @@ useEffect(()=>{
         number: firstDayOfMonth.getDate(),
         selected: (firstDayOfMonth.toDateString() === props.day.toDateString()),
         year: firstDayOfMonth.getFullYear(),
-        task:'null',
+        task:null,
         time:'dull'
       }
   
@@ -57,14 +57,14 @@ useEffect(()=>{
 e.preventDefault()
 console.log('raesh')
 var garuda=calenderdays
-garuda.forEach(element => {
+var k=garuda.forEach(element => {
 console.log(element.number===props.day.getDate(),'crea',element.month,props.day.getMonth(),element.year,props.day.getFullYear())
   if(element.number===props.day.getDate()&&element.month===props.day.getMonth()&&element.year===props.day.getFullYear()){
     element.task=task
     element.timings=timings
   }
-});
-setCalenderdays(garuda)
+});console.log(k)
+setCalenderdays(k)
 console.log(calenderdays)
   }
   return (
@@ -73,8 +73,9 @@ console.log(calenderdays)
       {
         calenderdays?.map((day) => {
           return (
-            <div className={"calendar-day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")+(day.task?'task':'')}
-                  onClick={() => props.changeCurrentDay(day)}>
+            <div className={"calendar-day" + (day.currentMonth ? " current" : "") + 
+            (day.selected ? " selected" : "")}
+                  onClick={() => props.changeCurrentDay(day)} style={{backgroundColor:day.task?colors[Math.floor(Math.random()*10)]:''}}>
               <p>{day.number}</p>
               <p>{day.task?day.task:null}</p>
               <p>{day.timings&&day.timings}</p>
