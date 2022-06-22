@@ -18,8 +18,6 @@ console.log(timings)
 useEffect(()=>{
   var currentDays = [];
   function bcg(){
-   
-  
     for (let day = 0; day < 42; day++) {
       if (day === 0 && weekdayOfFirstDay === 0) {
         firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
@@ -36,8 +34,7 @@ useEffect(()=>{
         number: firstDayOfMonth.getDate(),
         selected: (firstDayOfMonth.toDateString() === props.day.toDateString()),
         year: firstDayOfMonth.getFullYear(),
-        task:null,
-        time:'dull'
+     
       }
   
       currentDays.push(calendarDay);
@@ -55,17 +52,19 @@ useEffect(()=>{
 
   const  handlesubmit=(e)=>{
 e.preventDefault()
-console.log('raesh')
+console.log('rajesh')
 var garuda=calenderdays
-var k=garuda.forEach(element => {
+garuda.forEach(element => {
 console.log(element.number===props.day.getDate(),'crea',element.month,props.day.getMonth(),element.year,props.day.getFullYear())
   if(element.number===props.day.getDate()&&element.month===props.day.getMonth()&&element.year===props.day.getFullYear()){
-    element.task=task
-    element.timings=timings
-  }
-});console.log(k)
-setCalenderdays(k)
-console.log(calenderdays)
+  element.task=task,
+  element.timings=timings}
+  
+});
+console.log(garuda,'k')
+setCalenderdays(garuda)
+console.log(garuda,'abcd')
+console.log(calenderdays,'nippatmasaala')
   }
   return (
     <>
@@ -77,8 +76,8 @@ console.log(calenderdays)
             (day.selected ? " selected" : "")}
                   onClick={() => props.changeCurrentDay(day)} style={{backgroundColor:day.task?colors[Math.floor(Math.random()*10)]:''}}>
               <p>{day.number}</p>
-              <p>{day.task?day.task:null}</p>
-              <p>{day.timings&&day.timings}</p>
+              <p>{day?.task?day.task:null}</p>
+              <p>{day?.timings?day.timings:null}</p>
             </div>
           )
         })
@@ -105,7 +104,7 @@ console.log(calenderdays)
   </>
   )}
   <input placeholder='task name' value={task} onChange={(e)=>setTask(e.target.value)}/>
-  <input placeholder='task name' type='submit'/>
+  <input placeholder='task name' type='submit' className='submit'/>
 </form>
       </>
   )

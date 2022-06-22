@@ -35,7 +35,7 @@ a {
 .calendar-header {
   width: 100%;
   height: 50px;
-  margin: auto;
+  margin:2vh 0vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -141,4 +141,14 @@ padding: 0;
 .task{
 
   background-color: rgba(0,0,0,.10);
+}
+
+.submit{
+  background-color:#D7D7F3;
+  padding: 1vh 3vw;
+  border-radius: 5px;
+}
+.submit:hover{
+  background-color:#b3b3f7;
+  border-radius: 5px;
 }
